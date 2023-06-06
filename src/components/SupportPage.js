@@ -16,13 +16,15 @@ function SupportPage() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let newTicket = {
-      id: 441,
-      date: 123123123,
-      fio: "ASDA",
-      post: "sadsadasdasd",
-      text: "xzcwse213dasdsawdasdsadszxd3w2dsasad",
-    };
+    let newTicket = [
+      {
+        id: 441,
+        date: 123123123,
+        fio: "ASDA",
+        post: "sadsadasdasd",
+        text: "xzcwse213dasdsawdasdsadszxd3w2dsasad",
+      },
+    ];
 
     // const newItems = items.unshift(newTicket);
     // console.log(items);
