@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import moment from "moment";
 
 function SupportPage() {
   const [items, setItems] = useState([
@@ -10,21 +11,40 @@ function SupportPage() {
     localStorage.setItem("items", JSON.stringify(items));
   }, [items]);
 
+  const fioRef = useRef(null);
+  const postUserRef = useRef(null);
+  const textErrorRef = useRef(null);
+
   const SendTicketHandle = (e) => {
     // e.preventDefault();
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // const date = moment().format("LLL");
+    const date = moment().format("HH:mm DD-MM-YYYY");
+
     let newTicket = [
       {
-        id: 441,
-        date: 123123123,
-        fio: "ASDA",
-        post: "sadsadasdasd",
-        text: "xzcwse213dasdsawdasdsadszxd3w2dsasad",
+        id: Date.now(),
+        date: date,
+        fio: fioRef.current.value,
+        post: postUserRef.current.value,
+        text: textErrorRef.current.value,
       },
     ];
+
+    // const objectDate = new Date();
+    // console.log(objectDate);
+    // const day = objectDate.getDate();
+    // const month = objectDate.getMonth();
+    // const year = objectDate.getFullYear();
+    // console.log(`${day}/${month + 1}/${year}`);
+
+    // console.log(fioRef.current.value);
+    // console.log(postUserRef.current.value);
+    // console.log(textErrorRef.current.value);
 
     // const newItems = items.unshift(newTicket);
     // console.log(items);
@@ -40,6 +60,7 @@ function SupportPage() {
           <label htmlFor="fio">ФИО:</label>
           <br />
           <input
+            ref={fioRef}
             type="text"
             id="fio"
             name="fio"
@@ -49,6 +70,7 @@ function SupportPage() {
           <label>Должность:</label>
           <br />
           <input
+            ref={postUserRef}
             list="postUser"
             name="postUser"
             placeholder={"Выберите из списка"}
@@ -61,6 +83,7 @@ function SupportPage() {
           <label>Опишите ошибку/вопрос:</label>
           <br />
           <textarea
+            ref={textErrorRef}
             name="message"
             rows="10"
             cols="30"

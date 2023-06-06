@@ -4,7 +4,7 @@ import "./Ticket.css";
 function oneTicket(props) {
   return (
     <div className={"di"}>
-      <p>Дата: {props.date}</p>
+      <p>Время/Дата: {props.date}</p>
       <p>От кого: {props.fio}</p>
       <p>Должность: {props.post}</p>
       <p>Текст: {props.text}</p>
