@@ -7,13 +7,29 @@ function SupportPage() {
     { id: 1, date: 2, fio: "Max", post: "Developer", text: "Hello,Sasha" },
   ]);
 
+  // Наблюдаем за пунктом фио
+  const [fio, setFio] = useState("");
+  const fioChange = (e) => {
+    setFio(e.target.value);
+  };
+  // Наблюдаем за пунктом Должность
+  const [postUser, setPostUser] = useState("");
+  const postUserChange = (e) => {
+    setPostUser(e.target.value);
+  };
+  // Наблюдаем за пунктом Текст
+  const [textError, setTextError] = useState("");
+  const textErrorChange = (e) => {
+    setTextError(e.target.value);
+  };
+
   useEffect(() => {
     localStorage.setItem("items", JSON.stringify(items));
   }, [items]);
 
-  const fioRef = useRef(null);
-  const postUserRef = useRef(null);
-  const textErrorRef = useRef(null);
+  // const fioRef = useRef(null);
+  // const postUserRef = useRef(null);
+  // const textErrorRef = useRef(null);
 
   const SendTicketHandle = (e) => {
     // e.preventDefault();
@@ -23,15 +39,16 @@ function SupportPage() {
     e.preventDefault();
 
     // const date = moment().format("LLL");
+    // Использую библиотеку moment для работы со временем.
     const date = moment().format("HH:mm DD-MM-YYYY");
 
     let newTicket = [
       {
         id: Date.now(),
         date: date,
-        fio: fioRef.current.value,
-        post: postUserRef.current.value,
-        text: textErrorRef.current.value,
+        fio: fio,
+        post: postUser,
+        text: textError,
       },
     ];
 
@@ -49,6 +66,10 @@ function SupportPage() {
     // const newItems = items.unshift(newTicket);
     // console.log(items);
     setItems((prevState) => [...newTicket, ...prevState]);
+
+    setFio("");
+    setPostUser("");
+    setTextError("");
   };
 
   return (
@@ -60,7 +81,9 @@ function SupportPage() {
           <label htmlFor="fio">ФИО:</label>
           <br />
           <input
-            ref={fioRef}
+            // ref={fioRef}
+            value={fio}
+            onChange={fioChange}
             type="text"
             id="fio"
             name="fio"
@@ -70,7 +93,9 @@ function SupportPage() {
           <label>Должность:</label>
           <br />
           <input
-            ref={postUserRef}
+            // ref={postUserRef}
+            value={postUser}
+            onChange={postUserChange}
             list="postUser"
             name="postUser"
             placeholder={"Выберите из списка"}
@@ -83,7 +108,9 @@ function SupportPage() {
           <label>Опишите ошибку/вопрос:</label>
           <br />
           <textarea
-            ref={textErrorRef}
+            // ref={textErrorRef}
+            value={textError}
+            onChange={textErrorChange}
             name="message"
             rows="10"
             cols="30"
