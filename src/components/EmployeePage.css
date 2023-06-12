@@ -1,0 +1,17 @@
+.name-tab {
+    text-align: center;
+}
+
+.btn-category {
+    display: flex;
+    justify-content: center;
+}
+
+.btn-category button {
+    margin-right: 15px;
+}
+
+.btn-category button:last-child {
+    margin-right: 0px;
+}
+

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import OneTicket from "./Ticket/OneTicket";
-
+import "./EmployeePage.css";
 function EmployeePage() {
   const [items, setItems] = useState([]);
 
@@ -13,10 +13,12 @@ function EmployeePage() {
 
   return (
     <React.Fragment>
-      <h2>Вкладка для сотрудника</h2>
-      <button>Все задачи</button>
-      <button>Активные</button>
-      <button>Решенные</button>
+      <h2 className={"name-tab"}>Вкладка для сотрудника</h2>
+      <div className={"btn-category"}>
+        <button>Все задачи</button>
+        <button>Активные</button>
+        <button>Решенные</button>
+      </div>
       {items.map((item) => {
         return (
           <OneTicket
@@ -25,6 +27,7 @@ function EmployeePage() {
             fio={item.fio}
             post={item.post}
             text={item.text}
+            active={item.active}
           />
         );
       })}

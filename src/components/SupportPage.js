@@ -1,10 +1,24 @@
 import React, { useEffect, useRef, useState } from "react";
 import moment from "moment";
-
+import "./SupportPage.css";
 function SupportPage() {
   const [items, setItems] = useState([
-    { id: 0, date: 5, fio: "Sasha", post: "Leadesdasdsar", text: "Hello" },
-    { id: 1, date: 2, fio: "Max", post: "Developer", text: "Hello,Sasha" },
+    {
+      id: 0,
+      date: 5,
+      fio: "Sasha",
+      post: "Leadesdasdsar",
+      text: "Hello",
+      active: true,
+    },
+    {
+      id: 1,
+      date: 2,
+      fio: "Max",
+      post: "Developer",
+      text: "Hello,Sasha",
+      active: true,
+    },
   ]);
 
   // Наблюдаем за пунктом фио
@@ -49,6 +63,7 @@ function SupportPage() {
         fio: fio,
         post: postUser,
         text: textError,
+        active: true,
       },
     ];
 
@@ -74,7 +89,7 @@ function SupportPage() {
 
   return (
     <React.Fragment>
-      <h2>Написать тикет</h2>
+      <h2 className={"name-tab"}>Написать тикет</h2>
       <form onSubmit={handleSubmit}>
         <fieldset>
           <legend>Новый тикет:</legend>

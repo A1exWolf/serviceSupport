@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import SupportPage from "./components/SupportPage";
 import EmployeePage from "./components/EmployeePage";
+import "./App.css";
 function App() {
   return (
     <Router>
@@ -9,10 +10,10 @@ function App() {
         <nav>
           <ul>
             <li>
-              <Link to="/">Написать тикет</Link>
+              <Link to="/">✍️Написать тикет</Link>
             </li>
             <li>
-              <Link to="/employee">Разбор тикетов</Link>
+              <Link to="/employee">📢Разбор тикетов</Link>
             </li>
           </ul>
         </nav>

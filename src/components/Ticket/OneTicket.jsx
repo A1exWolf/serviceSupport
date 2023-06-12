@@ -2,13 +2,18 @@ import React from "react";
 import "./Ticket.css";
 
 function oneTicket(props) {
+  const activeHandle = (e) => {
+    console.log(e.target);
+  };
   return (
     <div className={"di"}>
       <p>Время/Дата: {props.date}</p>
       <p>От кого: {props.fio}</p>
       <p>Должность: {props.post}</p>
       <p>Текст: {props.text}</p>
-      <button className={"btn"}>Решено</button>
+      <button onClick={activeHandle} className={"btn"}>
+        Решено
+      </button>
     </div>
   );
 }

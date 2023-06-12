@@ -1,19 +1,31 @@
-.app-container {
+ul {
+    background: deepskyblue;
+    /*padding: 10px 0;*/
+    margin: 0;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    list-style-type: none;
     justify-content: center;
-    height: 100vh;
-    width: 100%;
+    border-bottom: 2px solid black;
 }
 
-.nav-links {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-bottom: 20px;
+ul li {
+    margin-right: 40px;
+    padding: 15px 10px;
 }
 
-.active-link {
-    font-weight: bold;
+ul li a {
+    text-decoration: none;
+    color: black;
+}
+
+ul li:hover {
+    background: rgba(255, 255, 255, 0.33);
+}
+
+/*ul li:first-child {*/
+/*    padding-left: 10px;*/
+/*}*/
+
+body {
+    background: #ffda95;
 }
