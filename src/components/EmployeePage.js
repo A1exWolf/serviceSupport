@@ -11,6 +11,15 @@ function EmployeePage() {
     }
   }, []);
 
+  useEffect(() => {
+    const items = JSON.parse(localStorage.getItem("items"));
+    if (items) {
+      setItems(items);
+    }
+  }, []);
+
+  // Если нет задач "Надпись нету тикетов."
+
   return (
     <React.Fragment>
       <h2 className={"name-tab"}>Вкладка для сотрудника</h2>

@@ -1,49 +1,28 @@
 import React, { useEffect, useRef, useState } from "react";
 import moment from "moment";
 import "./SupportPage.css";
-function SupportPage() {
-  const [items, setItems] = useState([
-    {
-      id: 0,
-      date: 5,
-      fio: "Sasha",
-      post: "Leadesdasdsar",
-      text: "Hello",
-      active: true,
-    },
-    {
-      id: 1,
-      date: 2,
-      fio: "Max",
-      post: "Developer",
-      text: "Hello,Sasha",
-      active: true,
-    },
-  ]);
 
-  // Наблюдаем за пунктом фио
-  const [fio, setFio] = useState("");
-  const fioChange = (e) => {
-    setFio(e.target.value);
-  };
-  // Наблюдаем за пунктом Должность
-  const [postUser, setPostUser] = useState("");
-  const postUserChange = (e) => {
-    setPostUser(e.target.value);
-  };
-  // Наблюдаем за пунктом Текст
-  const [textError, setTextError] = useState("");
-  const textErrorChange = (e) => {
-    setTextError(e.target.value);
-  };
+function SupportPage() {
+  const [items, setItems] = useState([]);
 
   useEffect(() => {
     localStorage.setItem("items", JSON.stringify(items));
   }, [items]);
 
-  // const fioRef = useRef(null);
-  // const postUserRef = useRef(null);
-  // const textErrorRef = useRef(null);
+  const [fio, setFio] = useState("");
+  const fioChange = (e) => {
+    setFio(e.target.value);
+  };
+
+  const [postUser, setPostUser] = useState("");
+  const postUserChange = (e) => {
+    setPostUser(e.target.value);
+  };
+
+  const [textError, setTextError] = useState("");
+  const textErrorChange = (e) => {
+    setTextError(e.target.value);
+  };
 
   const SendTicketHandle = (e) => {
     // e.preventDefault();
@@ -52,8 +31,6 @@ function SupportPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // const date = moment().format("LLL");
-    // Использую библиотеку moment для работы со временем.
     const date = moment().format("HH:mm DD-MM-YYYY");
 
     let newTicket = [
@@ -67,19 +44,6 @@ function SupportPage() {
       },
     ];
 
-    // const objectDate = new Date();
-    // console.log(objectDate);
-    // const day = objectDate.getDate();
-    // const month = objectDate.getMonth();
-    // const year = objectDate.getFullYear();
-    // console.log(`${day}/${month + 1}/${year}`);
-
-    // console.log(fioRef.current.value);
-    // console.log(postUserRef.current.value);
-    // console.log(textErrorRef.current.value);
-
-    // const newItems = items.unshift(newTicket);
-    // console.log(items);
     setItems((prevState) => [...newTicket, ...prevState]);
 
     setFio("");
@@ -103,6 +67,7 @@ function SupportPage() {
             id="fio"
             name="fio"
             placeholder={"Иванов Иван Иваныч"}
+            className={"formUser"}
           />
           <br />
           <label>Должность:</label>
@@ -114,6 +79,7 @@ function SupportPage() {
             list="postUser"
             name="postUser"
             placeholder={"Выберите из списка"}
+            className={"formUser"}
           />
           <datalist id="postUser">
             <option value="Рядовой пользователь" />
@@ -130,6 +96,7 @@ function SupportPage() {
             rows="10"
             cols="30"
             placeholder={"Опишите ошибку/вопрос"}
+            className={"formUser"}
           ></textarea>
           <br />
           <button type={"submit"} onClick={SendTicketHandle}>
