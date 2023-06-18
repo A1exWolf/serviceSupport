@@ -2,9 +2,6 @@ import React from "react";
 import "./Ticket.css";
 
 function oneTicket(props) {
-  const activeHandle = (e) => {
-    console.log(e.target);
-  };
   return (
     <div className={"di"}>
       <p>Время/Дата: {props.date}</p>

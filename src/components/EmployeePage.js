@@ -11,12 +11,20 @@ function EmployeePage() {
     }
   }, []);
 
-  useEffect(() => {
-    const items = JSON.parse(localStorage.getItem("items"));
-    if (items) {
-      setItems(items);
-    }
-  }, []);
+  const activeHandle = (itemId) => {
+    const updatedItems = items.map((item) => {
+      if (item.id === itemId) {
+        return {
+          ...item,
+          active: true,
+        };
+      }
+      return item;
+    });
+
+    setItems(updatedItems);
+    localStorage.setItem("items", JSON.stringify(updatedItems));
+  };
 
   // Если нет задач "Надпись нету тикетов."
 
@@ -30,14 +38,19 @@ function EmployeePage() {
       </div>
       {items.map((item) => {
         return (
-          <OneTicket
-            key={item.id}
-            date={item.date}
-            fio={item.fio}
-            post={item.post}
-            text={item.text}
-            active={item.active}
-          />
+          <div className={"di"}>
+            <p>Время/Дата: {item.date}</p>
+            <p>От кого: {item.fio}</p>
+            <p>Должность: {item.post}</p>
+            <p>Текст: {item.text}</p>
+            {item.active ? (
+              <p>Статус: Решено</p>
+            ) : (
+              <button onClick={() => activeHandle(item.id)} className={"btn"}>
+                Решено
+              </button>
+            )}
+          </div>
         );
       })}
     </React.Fragment>

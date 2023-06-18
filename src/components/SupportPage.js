@@ -6,7 +6,9 @@ function SupportPage() {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    localStorage.setItem("items", JSON.stringify(items));
+    const existingItems = JSON.parse(localStorage.getItem("items")) || [];
+    const updatedItems = [...existingItems, ...items];
+    localStorage.setItem("items", JSON.stringify(updatedItems));
   }, [items]);
 
   const [fio, setFio] = useState("");
@@ -40,7 +42,7 @@ function SupportPage() {
         fio: fio,
         post: postUser,
         text: textError,
-        active: true,
+        active: false,
       },
     ];
 
