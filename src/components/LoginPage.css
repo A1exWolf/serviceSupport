@@ -1,5 +1,5 @@
-/* SupportPage.css */
-.support-container {
+/* LoginPage.css */
+.login-container {
     margin-top: 100px;
     display: flex;
     flex-direction: column;
@@ -8,7 +8,7 @@
     background-color: #ffda95;
 }
 
-.support-form {
+.login-form {
     text-align: center;
     width: 350px;
     padding: 20px;
@@ -17,16 +17,16 @@
     background-color: #ffda95;
 }
 
-.support-form h2 {
+.login-form h2 {
     margin-bottom: 20px;
 }
 
-.support-form label {
+.login-form label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 
-.support-form input {
+.login-form input {
     width: calc(100%- 5px);
     padding: 10px;
     margin-bottom: 15px;
@@ -34,15 +34,7 @@
     border-radius: 4px;
 }
 
-.support-form textarea {
-    width: calc(100%- 5px);
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #000;
-    border-radius: 4px;
-}
-
-.support-form button {
+.login-form button {
     width: 100%;
     padding: 10px;
     background-color: #4caf50;
@@ -52,7 +44,7 @@
     cursor: pointer;
 }
 
-.support-form button:hover {
+.login-form button:hover {
     background-color: #45a049;
 }
 

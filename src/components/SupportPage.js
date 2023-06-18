@@ -76,67 +76,64 @@ function SupportPage() {
   };
 
   return (
-    <React.Fragment>
-      <h2 className={"name-tab"}>Написать тикет</h2>
-      <form onSubmit={handleSubmit}>
-        <fieldset>
-          <legend>Новый тикет:</legend>
-          <label htmlFor="fio">ФИО:</label>
-          <br />
-          <input
-            value={fio}
-            onChange={fioChange}
-            type="text"
-            id="fio"
-            name="fio"
-            placeholder={"Иванов Иван Иваныч"}
-            className={"formUser"}
-          />
-          {isFioEmpty && (
-            <p className={"error"}>*Пожалуйста, заполните поле ФИО.</p>
-          )}
-          <br />
-          <label>Должность:</label>
-          <br />
-          <input
-            value={postUser}
-            onChange={postUserChange}
-            list="postUser"
-            name="postUser"
-            placeholder={"Выберите из списка"}
-            className={"formUser"}
-          />
-          {isPostUserEmpty && (
-            <p className={"error"}>*Пожалуйста, выберите должность.</p>
-          )}
-          <datalist id="postUser">
-            <option value="Рядовой пользователь" />
-            <option value="Сотрудник/Тестер" />
-          </datalist>
-          <br />
-          <label>Опишите ошибку/вопрос:</label>
-          <br />
-          <textarea
-            value={textError}
-            onChange={textErrorChange}
-            name="message"
-            rows="10"
-            cols="30"
-            placeholder={"Опишите ошибку/вопрос"}
-            className={"formUser"}
-          ></textarea>
-          {isTextErrorEmpty && (
-            <p className={"error"}>
-              *Пожалуйста, заполните поле описания ошибки/вопроса.
-            </p>
-          )}
-          <br />
-          <button type={"submit"} onClick={SendTicketHandle}>
-            Отправить
-          </button>
-        </fieldset>
+    <div className="support-container">
+      <form onSubmit={handleSubmit} className="support-form">
+        <h2 className={"name-tab"}>Написать тикет</h2>
+        <label htmlFor="fio">ФИО:</label>
+        <br />
+        <input
+          value={fio}
+          onChange={fioChange}
+          type="text"
+          id="fio"
+          name="fio"
+          placeholder={"Иванов Иван Иваныч"}
+          className={"formUser"}
+        />
+        {isFioEmpty && (
+          <p className={"error"}>*Пожалуйста, заполните поле ФИО.</p>
+        )}
+        <br />
+        <label>Должность:</label>
+        <br />
+        <input
+          value={postUser}
+          onChange={postUserChange}
+          list="postUser"
+          name="postUser"
+          placeholder={"Выберите из списка"}
+          className={"formUser"}
+        />
+        {isPostUserEmpty && (
+          <p className={"error"}>*Пожалуйста, выберите должность.</p>
+        )}
+        <datalist id="postUser">
+          <option value="Рядовой пользователь" />
+          <option value="Сотрудник/Тестер" />
+        </datalist>
+        <br />
+        <label>Опишите ошибку/вопрос:</label>
+        <br />
+        <textarea
+          value={textError}
+          onChange={textErrorChange}
+          name="message"
+          rows="10"
+          cols="30"
+          placeholder={"Опишите ошибку/вопрос"}
+          className={"formUser"}
+        ></textarea>
+        {isTextErrorEmpty && (
+          <p className={"error"}>
+            *Пожалуйста, заполните поле описания ошибки/вопроса.
+          </p>
+        )}
+        <br />
+        <button type={"submit"} onClick={SendTicketHandle}>
+          Отправить
+        </button>
       </form>
-    </React.Fragment>
+    </div>
   );
 }
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import OneTicket from "./Ticket/OneTicket";
 import "./EmployeePage.css";
+
 function EmployeePage() {
   const [items, setItems] = useState([]);
   const [filter, setFilter] = useState("all"); // "all" - все задачи, "active" - активные, "resolved" - решенные
@@ -12,12 +12,12 @@ function EmployeePage() {
     }
   }, []);
 
-  const activeHandle = (itemId) => {
+  const toggleStatus = (itemId) => {
     const updatedItems = items.map((item) => {
       if (item.id === itemId) {
         return {
           ...item,
-          active: true,
+          active: !item.active,
         };
       }
       return item;
@@ -63,47 +63,48 @@ function EmployeePage() {
 
   return (
     <React.Fragment>
-      <h2 className={"name-tab"}>Вкладка для сотрудника</h2>
-      <div className={"btn-category"}>
-        <button onClick={() => handleFilter("all")}>
-          Все задачи ({countTasks("all")})
-        </button>
-        <button onClick={() => handleFilter("active")}>
-          Активные ({countTasks("active")})
-        </button>
-        <button onClick={() => handleFilter("resolved")}>
-          Решенные ({countTasks("resolved")})
-        </button>
+      <div className="employee-container">
+        <h2 className={"name-tab"}>Вкладка для сотрудника</h2>
+        <div className={"btn-category"}>
+          <button onClick={() => handleFilter("all")}>
+            Все задачи ({countTasks("all")})
+          </button>
+          <button onClick={() => handleFilter("active")}>
+            Активные ({countTasks("active")})
+          </button>
+          <button onClick={() => handleFilter("resolved")}>
+            Решенные ({countTasks("resolved")})
+          </button>
+        </div>
       </div>
       {isEmptyList ? (
-        <p className={"null_task"}>Список пуст</p>
+        <p className={"null_task"}>Список пуст...</p>
       ) : (
         filteredItems.map((item) => {
           return (
-            <div className={"di"} key={item.id}>
+            <div className={"task"} key={item.id}>
               <p>Время/Дата: {item.date}</p>
               <p>От кого: {item.fio}</p>
               <p>Должность: {item.post}</p>
               <p>Текст: {item.text}</p>
-              {item.active ? (
-                <p>Статус: Решенная задача</p>
-              ) : (
-                <>
-                  <p>Статус: активная задача</p>
-                  <button
-                    onClick={() => activeHandle(item.id)}
-                    className={"btn"}
-                  >
-                    Решено
+              <p className={"status"}>
+                Статус: {item.active ? "Решенная задача" : "Активная задача"}
+              </p>
+              <div className={"action-buttons"}>
+                {item.active ? (
+                  <button onClick={() => toggleStatus(item.id)}>
+                    Отменить решение
                   </button>
-                </>
-              )}
-              <button
-                onClick={() => deleteHandle(item.id)}
-                className={"btn del_btn"}
-              >
-                Удалить задачу
-              </button>
+                ) : (
+                  <button onClick={() => toggleStatus(item.id)}>Решено</button>
+                )}
+                <button
+                  className={"cancel-button"}
+                  onClick={() => deleteHandle(item.id)}
+                >
+                  Удалить задачу
+                </button>
+              </div>
             </div>
           );
         })
