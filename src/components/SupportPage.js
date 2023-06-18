@@ -7,23 +7,30 @@ function SupportPage() {
 
   useEffect(() => {
     const existingItems = JSON.parse(localStorage.getItem("items")) || [];
-    const updatedItems = [...existingItems, ...items];
+    const updatedItems = [...items, ...existingItems];
     localStorage.setItem("items", JSON.stringify(updatedItems));
   }, [items]);
 
   const [fio, setFio] = useState("");
+  const [postUser, setPostUser] = useState("");
+  const [textError, setTextError] = useState("");
+  const [isFioEmpty, setIsFioEmpty] = useState(false);
+  const [isPostUserEmpty, setIsPostUserEmpty] = useState(false);
+  const [isTextErrorEmpty, setIsTextErrorEmpty] = useState(false);
+
   const fioChange = (e) => {
     setFio(e.target.value);
+    setIsFioEmpty(false);
   };
 
-  const [postUser, setPostUser] = useState("");
   const postUserChange = (e) => {
     setPostUser(e.target.value);
+    setIsPostUserEmpty(false);
   };
 
-  const [textError, setTextError] = useState("");
   const textErrorChange = (e) => {
     setTextError(e.target.value);
+    setIsTextErrorEmpty(false);
   };
 
   const SendTicketHandle = (e) => {
@@ -34,6 +41,21 @@ function SupportPage() {
     e.preventDefault();
 
     const date = moment().format("HH:mm DD-MM-YYYY");
+
+    if (!fio) {
+      setIsFioEmpty(true);
+      return;
+    }
+
+    if (!postUser) {
+      setIsPostUserEmpty(true);
+      return;
+    }
+
+    if (!textError) {
+      setIsTextErrorEmpty(true);
+      return;
+    }
 
     let newTicket = [
       {
@@ -62,7 +84,6 @@ function SupportPage() {
           <label htmlFor="fio">ФИО:</label>
           <br />
           <input
-            // ref={fioRef}
             value={fio}
             onChange={fioChange}
             type="text"
@@ -71,11 +92,13 @@ function SupportPage() {
             placeholder={"Иванов Иван Иваныч"}
             className={"formUser"}
           />
+          {isFioEmpty && (
+            <p className={"error"}>*Пожалуйста, заполните поле ФИО.</p>
+          )}
           <br />
           <label>Должность:</label>
           <br />
           <input
-            // ref={postUserRef}
             value={postUser}
             onChange={postUserChange}
             list="postUser"
@@ -83,6 +106,9 @@ function SupportPage() {
             placeholder={"Выберите из списка"}
             className={"formUser"}
           />
+          {isPostUserEmpty && (
+            <p className={"error"}>*Пожалуйста, выберите должность.</p>
+          )}
           <datalist id="postUser">
             <option value="Рядовой пользователь" />
             <option value="Сотрудник/Тестер" />
@@ -91,7 +117,6 @@ function SupportPage() {
           <label>Опишите ошибку/вопрос:</label>
           <br />
           <textarea
-            // ref={textErrorRef}
             value={textError}
             onChange={textErrorChange}
             name="message"
@@ -100,6 +125,11 @@ function SupportPage() {
             placeholder={"Опишите ошибку/вопрос"}
             className={"formUser"}
           ></textarea>
+          {isTextErrorEmpty && (
+            <p className={"error"}>
+              *Пожалуйста, заполните поле описания ошибки/вопроса.
+            </p>
+          )}
           <br />
           <button type={"submit"} onClick={SendTicketHandle}>
             Отправить

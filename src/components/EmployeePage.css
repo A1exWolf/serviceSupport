@@ -15,3 +15,12 @@
     margin-right: 0px;
 }
 
+.null_task {
+    text-align: center;
+    font-size: 20px;
+}
+
+.del_btn {
+    margin-left: 10px;
+}
+
